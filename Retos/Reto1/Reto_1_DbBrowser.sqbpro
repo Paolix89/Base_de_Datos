@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="Reto_1_DbBrowser.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2042"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Ingresos" custom_title="0" dock_id="4" table="4,8:mainIngresos"/><table title="vista_pacientes" custom_title="0" dock_id="1" table="4,15:mainvista_pacientes"/><table title="Ingresos" custom_title="0" dock_id="6" table="4,8:mainIngresos"/><table title="Ingresos" custom_title="0" dock_id="5" table="4,8:mainIngresos"/><dock_state state="000000ff00000000fd00000001000000020000077200000379fc0100000001fc00000000000007720000011700fffffffa000000030100000004fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000011700fffffffb000000160064006f0063006b00420072006f00770073006500340100000000ffffffff0000011700fffffffb000000160064006f0063006b00420072006f00770073006500360100000000ffffffff0000011700fffffffb000000160064006f0063006b00420072006f00770073006500350100000000ffffffff0000011700ffffff000007720000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Ingresos" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="107"/><column index="2" value="77"/><column index="3" value="48"/><column index="4" value="97"/><column index="5" value="106"/><column index="6" value="112"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Medicos" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="106"/><column index="2" value="111"/><column index="3" value="127"/><column index="4" value="79"/><column index="5" value="111"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Pacientes" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="112"/><column index="2" value="117"/><column index="3" value="151"/><column index="4" value="159"/><column index="5" value="191"/><column index="6" value="87"/><column index="7" value="99"/><column index="8" value="79"/><column index="9" value="118"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="sqlite_sequence" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="79"/><column index="2" value="39"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="vista_pacientes" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort><column index="0" mode="1"/></sort><column_widths><column index="1" value="83"/><column index="2" value="117"/><column index="3" value="124"/><column index="4" value="76"/><column index="5" value="111"/><column index="6" value="118"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1*">CREATE TABLE &quot;Pacientes&quot; (
+	&quot;id_paciente&quot;	INTEGER,
+	&quot;nombre_paciente&quot;	TEXT,
+	&quot;apellidos_paciente&quot;	TEXT,
+	&quot;direccion&quot;	TEXT,
+	&quot;poblacion&quot;	TEXT,
+	&quot;provincia&quot;	TEXT,
+	&quot;codigo_postal&quot;	TEXT,
+	&quot;telefono&quot;	INTEGER (9),
+	&quot;fecha_nacimiento&quot;	TEXT,
+	PRIMARY KEY(&quot;id_paciente&quot;)
+);
+
+CREATE TABLE &quot;Medicos&quot; (
+	&quot;id_medico&quot;	INTEGER,
+	&quot;nombre_medico&quot;	TEXT,
+	&quot;apellidos_medico&quot;	TEXT,
+	&quot;telefono&quot;	INTEGER (9),
+	&quot;especialidad&quot;	TEXT,
+	PRIMARY KEY(&quot;id_medico&quot;)
+);
+
+CREATE TABLE &quot;Ingresos&quot; (
+	&quot;id_ingreso&quot;	INTEGER,
+	&quot;habitacion&quot;	INTEGER,
+	&quot;cama&quot;	INTEGER,
+	&quot;fecha_ingreso&quot;	TEXT,
+	&quot;id_medico&quot;	INTEGER,
+	&quot;id_paciente&quot;	INTEGER,
+	PRIMARY KEY(&quot;id_ingreso&quot;),
+	FOREIGN KEY(&quot;id_medico&quot;) REFERENCES &quot;Medicos&quot;(&quot;id_medico&quot;),
+	FOREIGN KEY(&quot;id_paciente&quot;) REFERENCES &quot;Pacientes&quot;(&quot;id_paciente&quot;)
+);
+
+
+SELECT * FROM Pacientes
+SELECT * FROM Medicos	
+SELECT * FROM Ingresos
+
+INSERT INTO Pacientes ( nombre_paciente, apellidos_paciente, direccion, poblacion, provincia, codigo_postal, telefono, fecha_nacimiento)
+VALUES
+('Alberto', 'Ruiz Muñoz', 'Calle Mayor 123', 'Madrid', 'Madrid', '28001', '912345678', '1985-03-21'),
+('Bárbara', 'Calvente Domínguez', 'Av. Sol 45', 'Valencia', 'Valencia', '46001', '963852741', '1990-07-12'),
+('Cinthia', 'Torres Sánchez', 'C/ Olmo 22', 'Barcelona', 'Barcelona', '08002', '934567890', '1978-11-03'),
+('Daniel', 'Pérez Díaz', 'Paseo Verde 67', 'Sevilla', 'Sevilla', '41012', '955123456', '2001-06-15'),
+('Ana', 'Muriel Serrano', 'Plaza del Sol 89', 'Málaga', 'Málaga', '29001', '951234567', '1988-02-08'),
+('Niko', 'Nacino Muñoz', 'C/ Felix de Azara 6', 'Arroyo de la Encomienda', 'Valladolid', '47195', '692831481', '1989-10-31');
+
+INSERT INTO Medicos (nombre_medico, apellidos_medico, telefono, especialidad) 
+VALUES
+('Laura', 'García Torres', '914567890', 'Traumatología'),
+('Pedro', 'Sánchez Díaz', '912345876', 'Pediatría'),
+('María', 'López García', '934567123', 'Neurología'),
+('José', 'Rodríguez Pérez', '955678901', 'Dermatología');
+
+
+INSERT INTO Ingresos (habitacion, cama, fecha_ingreso, id_medico, id_paciente) 
+VALUES
+('101', '1', '2024-11-01', 1, 1), 
+('402', '2', '2024-11-15', 2, 2), 
+('206', '1', '2024-11-20', 3, 3), 
+('305', '2', '2024-11-25', 4, 4), 
+('405', '2', '2024-11-25', 1, 5), 
+('204', '1', '2024-11-20', 2, 6),
+('105', '2', '2024-11-25', 3, 1);
+
+
+CREATE VIEW vista_pacientes AS
+SELECT Pacientes.id_paciente, Pacientes.nombre_paciente, Pacientes.apellidos_paciente, Medicos.id_medico, Medicos.nombre_medico, Medicos.apellidos_medico
+FROM Pacientes
+INNER JOIN Ingresos
+ON Pacientes.id_paciente = Ingresos.id_paciente
+INNER JOIN Medicos
+ON Ingresos.id_medico = Medicos.id_medico
+;
+
+SELECT * FROM vista_pacientes;
+
+CREATE VIEW cantidad_ingresos_pacientes AS
+SELECT p.id_paciente, p.nombre_paciente, p.apellidos_paciente,
+count (i.id_ingreso) AS cantidad_ingresos
+FROM Pacientes p 
+LEFT JOIN Ingresos i ON p.id_paciente = i.id_paciente
+GROUP BY p.id_paciente, p.nombre_paciente, p.apellidos_paciente;
+
+SELECT * FROM cantidad_ingresos_pacientes;
+
+CREATE VIEW cantidad_pacientes_atendidos AS
+SELECT m.id_medico, m.nombre_medico, m.apellidos_medico,
+count (DISTINCT	i.id_ingreso) AS cantidad_pacientes_atendidos
+FROM Medicos m
+LEFT JOIN Ingresos i ON m.id_medico = i.id_medico
+GROUP BY m.id_medico, m.nombre_medico, m.apellidos_medico;
+
+
+SELECT * FROM cantidad_pacientes_atendidos
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
