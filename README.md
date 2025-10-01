@@ -14,6 +14,6 @@ Repositorio con los distintos retos, ejercicios y prácticas de la asignatura de
 
 - Tecnologías utilizadas
 
-    SQL (MySQL / MariaDB / u otro SGBD indicado en clase).
+    SQL (DB Browser / MySQL / MariaDB / u otro SGBD indicado en clase).
     
     Herramientas de modelado E/R (Draw.io, MySQL Workbench).
